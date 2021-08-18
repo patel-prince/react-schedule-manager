@@ -18,9 +18,14 @@ const ScheduleContent = ({
             return (
               <Row>
                 <Col flex="60px">
-                  <Form.Item name={[field.name, 'day']}>
+                  <Form.Item
+                    name={[field.name, 'day']}
+                    onChange={() => {
+                      GenerateDate(form, SelectedDate, DateType);
+                    }}
+                  >
                     <InputNumber
-                      min={1}
+                      min={0}
                       onChange={() => {
                         GenerateDate(form, SelectedDate, DateType);
                       }}
@@ -29,7 +34,7 @@ const ScheduleContent = ({
                 </Col>
                 <Col flex="60px">
                   <Form.Item name={[field.name, 'task']}>
-                    <InputNumber />
+                    <Input />
                   </Form.Item>
                 </Col>
                 <Col flex={1}>
@@ -39,7 +44,7 @@ const ScheduleContent = ({
                 </Col>
                 <Col flex="120px">
                   <Form.Item name={[field.name, 'start_date']}>
-                    <DatePicker format="DD-MM-YYYY" />
+                    <DatePicker disabled format="DD-MM-YYYY" />
                   </Form.Item>
                 </Col>
                 <Col>
