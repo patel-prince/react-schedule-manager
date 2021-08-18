@@ -11,12 +11,12 @@ export default function App() {
   useEffect(() => {
     form.setFieldsValue({
       schedule: [
-        // {
-        //   day: 1,
-        //   task: 1,
-        //   desc: 'Dummy Text',
-        //   start_date: moment('2021-08-12')
-        // }
+        {
+          day: 1,
+          task: 1,
+          desc: 'Dummy Text',
+          start_date: moment(new Date()) // moment('2021-08-12')
+        }
       ]
     });
   }, []);
