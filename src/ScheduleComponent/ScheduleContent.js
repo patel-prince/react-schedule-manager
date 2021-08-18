@@ -26,6 +26,7 @@ const ScheduleContent = ({
                   >
                     <InputNumber
                       min={0}
+                      max={365}
                       onChange={() => {
                         GenerateDate(form, SelectedDate, DateType);
                       }}
