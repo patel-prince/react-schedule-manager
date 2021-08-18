@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col, Button, Input, DatePicker } from 'antd';
+import { Form, Row, Col, Button, Input, DatePicker, InputNumber } from 'antd';
 import { MinusOutlined } from '@ant-design/icons';
 
 const ScheduleContent = ({
@@ -18,18 +18,18 @@ const ScheduleContent = ({
             return (
               <Row>
                 <Col flex="60px">
-                  <Form.Item
-                    name={[field.name, 'day']}
-                    onChange={() => {
-                      GenerateDate(form, SelectedDate, DateType);
-                    }}
-                  >
-                    <Input />
+                  <Form.Item name={[field.name, 'day']}>
+                    <InputNumber
+                      min={1}
+                      onChange={() => {
+                        GenerateDate(form, SelectedDate, DateType);
+                      }}
+                    />
                   </Form.Item>
                 </Col>
                 <Col flex="60px">
                   <Form.Item name={[field.name, 'task']}>
-                    <Input />
+                    <InputNumber />
                   </Form.Item>
                 </Col>
                 <Col flex={1}>
