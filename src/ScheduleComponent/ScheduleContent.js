@@ -10,7 +10,7 @@ const ScheduleContent = ({
   DateType
 }) => {
   return (
-    <Form.List name={scheduleName}>
+    <Form.List name={scheduleName} initialValue={[]}>
       {(fields, { remove }) => {
         return (
           fields &&

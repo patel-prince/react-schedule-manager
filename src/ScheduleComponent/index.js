@@ -33,6 +33,13 @@ const ScheduleComponent = ({ scheduleName, form }) => {
             if (task_list[i].day) {
               decrease_rate -= parseInt(task_list[i].day);
             }
+            let temp_date = moment(date).add(decrease_rate + 1, 'days');
+            if (temp_date.format('ddd') === 'Sun') {
+              decrease_rate -= 2;
+            }
+            if (temp_date.format('ddd') === 'Sat') {
+              decrease_rate -= 1;
+            }
             task_list[i].start_date = moment(date).add(
               decrease_rate + 1,
               'days'
@@ -40,6 +47,13 @@ const ScheduleComponent = ({ scheduleName, form }) => {
           }
         } else {
           for (var i = 0; i < task_list.length; i++) {
+            let temp_date = moment(date).add(increase_rate, 'days');
+            if (temp_date.format('ddd') === 'Sun') {
+              increase_rate += 1;
+            }
+            if (temp_date.format('ddd') === 'Sat') {
+              increase_rate += 2;
+            }
             task_list[i].start_date = moment(date).add(increase_rate, 'days');
             if (task_list[i].day) {
               increase_rate += parseInt(task_list[i].day);
