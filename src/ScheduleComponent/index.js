@@ -33,31 +33,39 @@ const ScheduleComponent = ({ scheduleName, form }) => {
             if (task_list[i].day) {
               decrease_rate -= parseInt(task_list[i].day);
             }
-            let temp_date = moment(date).add(decrease_rate + 1, 'days');
-            if (temp_date.format('ddd') === 'Sun') {
-              decrease_rate -= 2;
+            let count = 0;
+            let temp_date = new Date(moment(date).add(1, 'days'));
+            task_list[i].start_date = moment(temp_date);
+            while (count > decrease_rate) {
+              console.log(temp_date);
+              temp_date = moment(temp_date).add(-1, 'days');
+              if (temp_date.format('ddd') === 'Sun') {
+                temp_date = moment(temp_date).add(-2, 'days');
+              }
+              if (temp_date.format('ddd') === 'Sat') {
+                temp_date = moment(temp_date).add(-1, 'days');
+              }
+              count--;
             }
-            if (temp_date.format('ddd') === 'Sat') {
-              decrease_rate -= 1;
-            }
-            task_list[i].start_date = moment(date).add(
-              decrease_rate + 1,
-              'days'
-            );
+            task_list[i].start_date = moment(new Date(temp_date));
           }
         } else {
           for (var i = 0; i < task_list.length; i++) {
-            let temp_date = moment(date).add(increase_rate, 'days');
-            if (temp_date.format('ddd') === 'Sun') {
-              increase_rate += 1;
+            let count = 0;
+            let temp_date = new Date(date);
+            task_list[i].start_date = moment(temp_date);
+            while (count < increase_rate) {
+              temp_date = moment(temp_date).add(1, 'days');
+              if (temp_date.format('ddd') === 'Sun') {
+                temp_date = moment(temp_date).add(1, 'days');
+              }
+              if (temp_date.format('ddd') === 'Sat') {
+                temp_date = moment(temp_date).add(2, 'days');
+              }
+              count++;
             }
-            if (temp_date.format('ddd') === 'Sat') {
-              increase_rate += 2;
-            }
-            task_list[i].start_date = moment(date).add(increase_rate, 'days');
-            if (task_list[i].day) {
-              increase_rate += parseInt(task_list[i].day);
-            }
+            task_list[i].start_date = moment(new Date(temp_date));
+            increase_rate += parseInt(task_list[i].day);
           }
         }
         form.getFieldsValue({
